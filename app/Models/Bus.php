@@ -11,7 +11,17 @@ class Bus extends Model
     protected $fillable = [
         'license_plate',
         'site_id',
-        'bus_type_id',
+        'bus_types_id',
     ];
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
+    }
+
+    public function busType()
+    {
+        return $this->belongsTo(BusTypes::class, 'bus_types_id');
+    }
 
 }

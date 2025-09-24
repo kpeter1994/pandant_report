@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('aA123456'),
             'role_id' => Role::where('name', 'Admin')->first()->id,
         ]);
+        $this->call(SitesTableSeeder::class);
     }
 }

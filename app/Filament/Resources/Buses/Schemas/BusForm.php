@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Buses\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -12,13 +13,14 @@ class BusForm
         return $schema
             ->components([
                 TextInput::make('license_plate')
+                    ->required()->label('Rendszám'),
+                Select::make('site_id')->relationship('site', 'name')
+                    ->label('Telephely')
                     ->required(),
-                TextInput::make('site_id')
+                Select::make('bus_types_id')
+                    ->relationship('busType', 'name')
+                    ->label('Busz típus')
                     ->required()
-                    ->numeric(),
-                TextInput::make('bus_types_id')
-                    ->required()
-                    ->numeric(),
             ]);
     }
 }
