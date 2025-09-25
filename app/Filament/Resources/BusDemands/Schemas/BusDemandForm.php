@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\BusDemands\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -17,9 +18,9 @@ class BusDemandForm
                 TextInput::make('site_id')
                     ->required()
                     ->numeric(),
-                TextInput::make('bus_types_id')
+                Select::make('bus_types_id')
                     ->required()
-                    ->numeric(),
+                    ->relationship('busType', 'name'),
                 TextInput::make('garden')
                     ->required()
                     ->numeric(),

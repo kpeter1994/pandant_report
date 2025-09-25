@@ -18,7 +18,12 @@ class ServiceWorksheetResource extends Resource
 {
     protected static ?string $model = ServiceWorksheet::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Wrench;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Szerviz munkalapok';
+    }
 
     public static function form(Schema $schema): Schema
     {

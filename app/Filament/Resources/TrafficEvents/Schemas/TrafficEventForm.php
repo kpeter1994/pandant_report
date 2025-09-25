@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Filament\Resources\Events\Schemas;
+namespace App\Filament\Resources\TrafficEvents\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
-class EventForm
+class TrafficEventForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextInput::make('daily_reports_id')
+                Select::make('bus_id')
                     ->required()
-                    ->numeric(),
+                    ->relationship('bus', 'license_plate')->searchable()->preload(),
                 TextInput::make('title')
                     ->required(),
                 Textarea::make('description')
@@ -33,11 +34,6 @@ class EventForm
                     ->required()
                     ->numeric()
                     ->default(0),
-                TextInput::make('eventable_id')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('eventable_type')
-                    ->default(null),
             ]);
     }
 }

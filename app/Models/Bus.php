@@ -24,4 +24,9 @@ class Bus extends Model
         return $this->belongsTo(BusTypes::class, 'bus_types_id');
     }
 
+    public function serviceWorksheets()
+    {
+        return $this->belongsToMany(ServiceWorksheet::class);
+    }
+
 }

@@ -18,7 +18,14 @@ class ServiceTypeResource extends Resource
 {
     protected static ?string $model = ServiceType::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::WrenchScrewdriver;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Szerviz típusok';
+    }
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Admin';
 
     public static function form(Schema $schema): Schema
     {

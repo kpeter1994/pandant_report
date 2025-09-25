@@ -18,7 +18,14 @@ class BusTypesResource extends Resource
 {
     protected static ?string $model = BusTypes::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Swatch;
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Admin';
+
+    public static function getPluralLabel(): string
+    {
+        return 'Busztípusok';
+    }
 
     public static function form(Schema $schema): Schema
     {

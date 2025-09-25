@@ -18,7 +18,14 @@ class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserCircle;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Jogosultságok';
+    }
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Admin';
 
     public static function form(Schema $schema): Schema
     {

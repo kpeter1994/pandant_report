@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ServiceWorksheets\Tables;
+namespace App\Filament\Resources\TrafficEvents\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,19 +8,28 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServiceWorksheetsTable
+class TrafficEventsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('serviceType.name')
+                TextColumn::make('dailyReport.report_date')
+                    ->date()
                     ->sortable(),
-                TextColumn::make('start')
-                    ->dateTime()
+                TextColumn::make('bus.license_plate')
+                    ->numeric()
                     ->sortable(),
-                TextColumn::make('end')
-                    ->dateTime()
+                TextColumn::make('title')
+                    ->searchable(),
+                TextColumn::make('event_time')
+                    ->time()
+                    ->sortable(),
+                TextColumn::make('damage_value')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('personal_injury')
+                    ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

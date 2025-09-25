@@ -18,7 +18,14 @@ class SiteResource extends Resource
 {
     protected static ?string $model = Site::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Telephelyek';
+    }
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Admin';
 
     public static function form(Schema $schema): Schema
     {

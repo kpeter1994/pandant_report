@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Bus;
-use App\Models\ServiceType;
+use App\Models\ServiceWorksheet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_worksheets', function (Blueprint $table) {
+        Schema::create('bus_service_worksheet', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ServiceType::class);
-            $table->datetime('start');
-            $table->datetime('end')->nullable();
-            $table->text('description')->nullable();
+            $table->foreignIdFor(Bus::class);
+            $table->foreignIdFor(ServiceWorksheet::class);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_worksheets');
+        Schema::dropIfExists('bus_service_worksheet');
     }
 };

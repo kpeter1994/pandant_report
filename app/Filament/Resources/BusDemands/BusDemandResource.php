@@ -18,7 +18,12 @@ class BusDemandResource extends Resource
 {
     protected static ?string $model = BusDemand::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ClipboardDocumentCheck;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Napi igények';
+    }
 
     public static function form(Schema $schema): Schema
     {

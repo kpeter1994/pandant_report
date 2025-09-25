@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
             'role_id' => Role::where('name', 'Admin')->first()->id,
         ]);
         $this->call(SitesTableSeeder::class);
+        $this->call(BusesTableSeeder::class);
+        $this->call(BusTypesTableSeeder::class);
+        $this->call(ServiceTypesTableSeeder::class);
     }
 }

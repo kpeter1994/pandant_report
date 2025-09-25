@@ -16,10 +16,10 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('role_id')
+                TextColumn::make('role.name')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('site_id')
+                TextColumn::make('site.id')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('email')

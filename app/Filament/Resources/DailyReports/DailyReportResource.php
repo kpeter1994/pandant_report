@@ -5,6 +5,8 @@ namespace App\Filament\Resources\DailyReports;
 use App\Filament\Resources\DailyReports\Pages\CreateDailyReport;
 use App\Filament\Resources\DailyReports\Pages\EditDailyReport;
 use App\Filament\Resources\DailyReports\Pages\ListDailyReports;
+use App\Filament\Resources\DailyReports\RelationManagers\SiteEventsRelationManager;
+use App\Filament\Resources\DailyReports\RelationManagers\TrafficEventsRelationManager;
 use App\Filament\Resources\DailyReports\Schemas\DailyReportForm;
 use App\Filament\Resources\DailyReports\Tables\DailyReportsTable;
 use App\Models\DailyReport;
@@ -18,7 +20,12 @@ class DailyReportResource extends Resource
 {
     protected static ?string $model = DailyReport::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::PresentationChartBar;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Napi jelentések';
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -33,7 +40,8 @@ class DailyReportResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            TrafficEventsRelationManager::class,
+            SiteEventsRelationManager::class,
         ];
     }
 

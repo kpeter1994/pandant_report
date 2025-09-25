@@ -18,7 +18,12 @@ class BusResource extends Resource
 {
     protected static ?string $model = Bus::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Truck;
+
+    public static function getPluralLabel(): string
+    {
+        return 'Buszok';
+    }
 
     public static function form(Schema $schema): Schema
     {
