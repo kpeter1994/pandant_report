@@ -12,19 +12,21 @@ class BusDemandForm
     {
         return $schema
             ->components([
-                TextInput::make('daily_reports_id')
+                Select::make('site_id')
                     ->required()
-                    ->numeric(),
-                TextInput::make('site_id')
-                    ->required()
-                    ->numeric(),
+                    ->relationship('site', 'name')
+                    ->label('Telephely')
+                    ->default(fn () => auth()->user()->site?->id),
                 Select::make('bus_types_id')
                     ->required()
-                    ->relationship('busType', 'name'),
+                    ->relationship('busType', 'name')
+                    ->label('Busz típus'),
                 TextInput::make('garden')
                     ->required()
+                    ->label('Leadott igény')
                     ->numeric(),
                 TextInput::make('got')
+                    ->label('Kiadott jármű')
                     ->required()
                     ->numeric(),
             ]);

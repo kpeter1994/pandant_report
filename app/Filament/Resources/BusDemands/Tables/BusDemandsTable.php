@@ -14,13 +14,13 @@ class BusDemandsTable
     {
         return $table
             ->columns([
-                TextColumn::make('daily_reports_id')
+                TextColumn::make('dailyReport.report_date')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('site_id')
+                TextColumn::make('site.name')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('bus_types_id')
+                TextColumn::make('busType.name')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('garden')

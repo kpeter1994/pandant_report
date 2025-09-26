@@ -5,6 +5,7 @@ namespace App\Filament\Resources\DailyReports;
 use App\Filament\Resources\DailyReports\Pages\CreateDailyReport;
 use App\Filament\Resources\DailyReports\Pages\EditDailyReport;
 use App\Filament\Resources\DailyReports\Pages\ListDailyReports;
+use App\Filament\Resources\DailyReports\RelationManagers\BusDemandsRelationManager;
 use App\Filament\Resources\DailyReports\RelationManagers\SiteEventsRelationManager;
 use App\Filament\Resources\DailyReports\RelationManagers\TrafficEventsRelationManager;
 use App\Filament\Resources\DailyReports\Schemas\DailyReportForm;
@@ -42,6 +43,7 @@ class DailyReportResource extends Resource
         return [
             TrafficEventsRelationManager::class,
             SiteEventsRelationManager::class,
+            BusDemandsRelationManager::class
         ];
     }
 

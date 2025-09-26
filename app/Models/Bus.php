@@ -29,4 +29,9 @@ class Bus extends Model
         return $this->belongsToMany(ServiceWorksheet::class);
     }
 
+    public function trafficEvents()
+    {
+        return $this->hasMany(TrafficEvent::class);
+    }
+
 }

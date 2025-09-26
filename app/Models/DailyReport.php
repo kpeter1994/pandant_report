@@ -17,4 +17,9 @@ class DailyReport extends Model
     {
         return $this->hasMany(SiteEvent::class);
     }
+
+    public function busDemands()
+    {
+        return $this->hasMany(BusDemand::class);
+    }
 }
