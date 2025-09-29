@@ -1,0 +1,30 @@
+<mjml>
+    <mj-head>
+        <mj-preview>
+            <!-- TODO Add mail preview -->
+        </mj-preview>
+    </mj-head>
+    <mj-body>
+        <mj-wrapper padding="">
+            <mj-section background-color="black">
+                <mj-column>
+                    <mj-image width="150px" src="http://localhost:8000/img/logo.png"/>
+                </mj-column>
+                <mj-column>
+                    <mj-text font-style="bold" font-size="20px" color="white">Napi üzemviteli jelentés</mj-text>
+                    <mj-text color="#DBDBDB">{{$report->report_date}}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section>
+                <mj-column>
+                    <mj-text padding-bottom="16px" font-size="20px">Kiadott buszok</mj-text>
+                    <mj-text font-weight="bold">Telephely</mj-text>
+                    dsadsa
+                </mj-column>
+            </mj-section>
+
+        </mj-wrapper>
+
+    </mj-body>
+</mjml>

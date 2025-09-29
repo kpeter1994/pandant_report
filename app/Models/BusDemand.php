@@ -8,6 +8,7 @@ class BusDemand extends Model
 {
     protected $fillable = ['daily_report_id', 'site_id', 'bus_types_id', 'garden', 'got'];
 
+    protected $with = ['dailyReport', 'site', 'busType'];
     public function dailyReport()
     {
         return $this->belongsTo(DailyReport::class);
