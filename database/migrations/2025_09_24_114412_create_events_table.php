@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('dispatch')->nullable();
-            $table->dateTime('event_time')->nullable();
+            $table->time('event_time')->nullable();
             $table->integer('damage_value')->default(0);
             $table->integer('personal_injury')->default(0);
 

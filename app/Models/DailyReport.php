@@ -8,8 +8,6 @@ class DailyReport extends Model
 {
     protected $fillable = ['report_date'];
 
-    public $with = ['trafficEvents', 'siteEvents', 'busDemands'];
-
     public function trafficEvents()
     {
         return $this->hasMany(TrafficEvent::class);

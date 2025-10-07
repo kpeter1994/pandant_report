@@ -23,4 +23,12 @@ class SiteEvent extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($siteEvent) {
+            $actualReport = DailyReport::where('is_active', true)->first();
+            $siteEvent->daily_report_id = $actualReport->id;
+        });
+    }
 }

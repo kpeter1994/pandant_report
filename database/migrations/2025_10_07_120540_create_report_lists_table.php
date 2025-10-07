@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\DailyReport;
 use App\Models\Site;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,14 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('site_events', function (Blueprint $table) {
+        Schema::create('report_lists', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(DailyReport::class);
-            $table->foreignIdFor(Site::class);
-
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->time('event_time');
+            $table->string('name');
+            $table->string('email');
+            $table->boolean('daily_report')->default(true);
+            $table->boolean('all_email')->default(false);
+            $table->foreignId(Site::class);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_events');
+        Schema::dropIfExists('report_lists');
     }
 };

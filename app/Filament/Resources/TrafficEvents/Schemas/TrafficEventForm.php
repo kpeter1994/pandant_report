@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\TrafficEvents\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -25,7 +25,7 @@ class TrafficEventForm
                 Textarea::make('dispatch')
                     ->default(null)
                     ->columnSpanFull(),
-                DateTimePicker::make('event_time'),
+                TimePicker::make('event_time'),
                 TextInput::make('damage_value')
                     ->required()
                     ->numeric()

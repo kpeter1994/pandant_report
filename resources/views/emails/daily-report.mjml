@@ -6,23 +6,104 @@
     </mj-head>
     <mj-body>
         <mj-wrapper padding="">
-            <mj-section background-color="black">
+            <mj-section background-color="#DEDEDE">
                 <mj-column>
-                    <mj-image width="150px" src="http://localhost:8000/img/logo.png"/>
+                    <mj-image width="150px" src="https://itkholding.hu/wp-content/uploads/2021/02/ITK-HOLDONG_LOGO_FEJLEC-e1612822886364.png"/>
                 </mj-column>
                 <mj-column>
-                    <mj-text font-style="bold" font-size="20px" color="white">Napi üzemviteli jelentés</mj-text>
-                    <mj-text color="#DBDBDB">{{$report->report_date}}</mj-text>
+                    <mj-text font-style="bold" font-size="20px">Napi üzemviteli jelentés</mj-text>
+                    <mj-text>{{$report->report_date}}</mj-text>
                 </mj-column>
             </mj-section>
 
             <mj-section>
-                <mj-column>
-                    <mj-text padding-bottom="16px" font-size="20px">Kiadott buszok</mj-text>
+                <mj-column width="100%">
+                    <mj-text font-size="20px">Kiadott buszok</mj-text>
+                </mj-column>
+                <mj-column width="100%">
                     <mj-text font-weight="bold">Telephely</mj-text>
-                    dsadsa
+                    <mj-table>
+                       <tr style="background-color:#F0F0F0;">
+                           <td>Busz típus</td>
+                           <td><b>szoló</b></td>
+                           <td><b>csuklós</b></td>
+                       </tr>
+                        <tr>
+                            <td>Kért</td>
+                            <td>20</td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td>Kapott</td>
+                            <td>20</td>
+                            <td>71</td>
+                        </tr>
+
+                    </mj-table>
                 </mj-column>
             </mj-section>
+
+
+            <mj-section background-color="#F0F0F0">
+                <mj-column width="100%">
+                    <mj-text font-size="20px">Események</mj-text>
+                </mj-column>
+                <mj-column width="100%">
+                    <mj-table>
+                        <tr>
+                            <td><b>Rendszám:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Időpont:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Telephely:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Kárérték:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Személyi sérült:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+
+                    </mj-table>
+                    <mj-text><b>Leírás:</b></mj-text>
+                    <mj-text>Az információs társadalom rohamos fejlődésével lépést tartva rendszerintegrátorként társaságunk, a Pandant TMSZ Kft.  hatékony és fenntartható fejlesztésekkel, szolgáltatásokkal támogatja partnereit. Legyen szó szoftver- és hardverfejlesztési vagy üzemeltetési,</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section>
+                <mj-column width="100%">
+                    <mj-text font-size="20px">Szerviz és felkészítés</mj-text>
+                </mj-column>
+                <mj-column width="100%">
+                    <mj-text font-size="16px"><b>Telephely</b></mj-text>
+                    <mj-text><b>Tartósan javító autóbusz</b></mj-text>
+                    <mj-table>
+                        <tr>
+                            <td><b>Rendszám</b></td>
+                            <td><b>Munkalap nyítás</b></td>
+                            <td><b>Munkalap zárás</b></td>
+                        </tr>
+                        <tr>
+                            <td>LMG-512</td>
+                            <td>2025.05.21 15:32</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad doloremque ex in inventore laboriosam modi natus odit quia quo voluptatum.</i></td>
+                        </tr>
+
+                    </mj-table>
+
+                </mj-column>
+            </mj-section>
+
 
         </mj-wrapper>
 

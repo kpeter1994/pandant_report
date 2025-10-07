@@ -2,7 +2,8 @@
 
 namespace App\Filament\Resources\SiteEvents\Schemas;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -13,18 +14,15 @@ class SiteEventForm
     {
         return $schema
             ->components([
-                TextInput::make('daily_report_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('site_id')
-                    ->required()
-                    ->numeric(),
+                Select::make('site_id')
+                    ->relationship('site', 'name')
+                    ->required(),
                 TextInput::make('title')
                     ->required(),
                 Textarea::make('description')
                     ->default(null)
                     ->columnSpanFull(),
-                DatePicker::make('event_time')
+                TimePicker::make('event_time')
                     ->required(),
             ]);
     }

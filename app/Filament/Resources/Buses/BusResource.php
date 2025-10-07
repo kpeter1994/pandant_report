@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Buses;
 use App\Filament\Resources\Buses\Pages\CreateBus;
 use App\Filament\Resources\Buses\Pages\EditBus;
 use App\Filament\Resources\Buses\Pages\ListBuses;
+use App\Filament\Resources\Buses\RelationManagers\ServiceWorksheetsRelationManager;
 use App\Filament\Resources\Buses\Schemas\BusForm;
 use App\Filament\Resources\Buses\Tables\BusesTable;
 use App\Models\Bus;
@@ -38,7 +39,7 @@ class BusResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ServiceWorksheetsRelationManager::class,
         ];
     }
 
