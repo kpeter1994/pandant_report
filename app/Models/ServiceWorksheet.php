@@ -13,6 +13,7 @@ class ServiceWorksheet extends Model
         'start',
         'end',
         'description',
+        'open'
     ];
 
     public function serviceType(){

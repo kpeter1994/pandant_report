@@ -6,7 +6,9 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ServiceWorksheetForm
 {
@@ -19,6 +21,10 @@ class ServiceWorksheetForm
                     ->required()
                     ->relationship('serviceType', 'name'),
                 DateTimePicker::make('start')
+                    ->required(),
+                Toggle::make('open')
+                    ->label('Nyitva')
+                    ->default(true)
                     ->required(),
                 DateTimePicker::make('end'),
                 Textarea::make('description')

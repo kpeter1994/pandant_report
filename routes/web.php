@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bus;
 use App\Models\DailyReport;
 use App\Models\ServiceWorksheet;
 use Illuminate\Support\Facades\Route;
@@ -19,21 +20,17 @@ Route::get('/tester', function (){
     $groupedBusDemands = $dailyReport->busDemands->groupBy(function ($demand) {
         return $demand->site->name ?? 'Nincs telephely';
     });
-    $query = ServiceWorksheet::where('end', '>', now())->orWhereNull('end');
 
-    $serviceWorksheets = [];
-
-    $serviceWorksheets['Tartósan javítás alatt'] = (clone $query)->where('start', '<', now()->subDays(7))->get();
-    $serviceWorksheets['Vonali javítás'] = (clone $query)
-        ->whereHas('serviceType', function ($q) {
-        $q->where('name', 'Vonal javítás');
+    $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
+        $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
     })->get();
-    $serviceWorksheets['Járatkimaradás'] = (clone $query)
-        ->whereHas('serviceType', function ($q) {
-            $q->where('name', 'Járatkimaradás');
-        })->get();
 
-    dd($dailyReport);
+    $groupedBuses = $buses->groupBy(function ($bus){
+        return $bus->site->name ?? 'Nincs telephely';
+    });
+
+
+    dd($groupedBuses);
 });
 
 require __DIR__.'/settings.php';

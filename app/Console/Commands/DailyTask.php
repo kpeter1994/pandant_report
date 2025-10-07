@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\DailyReportMail;
+use App\Models\Bus;
 use App\Models\DailyReport;
 use App\Models\ServiceWorksheet;
 use Illuminate\Console\Command;
@@ -35,24 +36,21 @@ class DailyTask extends Command
             return $demand->site->name ?? 'Nincs telephely';
         });
 
-        $query = ServiceWorksheet::where('end', '>', now())->orWhereNull('end');
+        $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
+            $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
+        })->get();
 
-        $serviceWorksheets = [];
-        $serviceWorksheets['Tartósan javítás alatt'] = (clone $query)->where('start', '<', now()->subDays(7))->get();
-        $serviceWorksheets['Vonali javítás'] = (clone $query)
-            ->whereHas('serviceType', function ($q) {
-                $q->where('name', 'Vonal javítás');
-            })->get();
-        $serviceWorksheets['Járatkimaradás'] = (clone $query)
-            ->whereHas('serviceType', function ($q) {
-                $q->where('name', 'Járatkimaradás');
-            })->get();
+        $groupedBuses = $buses->groupBy(function ($bus){
+            return $bus->site->name ?? 'Nincs telephely';
+        });
+
+
 
 //        dd($groupedBusDemands);
         # $dailyReport->is_active = false;
         # $dailyReport->save();
 
-        Mail::to('smitpeter777@gmail.com')->send(new DailyReportMail($dailyReport, $groupedBusDemands, $serviceWorksheets));
+        Mail::to('smitpeter777@gmail.com')->send(new DailyReportMail($dailyReport, $groupedBusDemands, $groupedBuses));
 
         # DailyReport::create([
         #    'report_date' => now()->toDateString(),

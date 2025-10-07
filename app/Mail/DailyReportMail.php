@@ -17,7 +17,7 @@ class DailyReportMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public DailyReport $report, public $groupedBusDemands, public $serviceWorksheets)
+    public function __construct(public DailyReport $report, public $groupedBusDemands, public $groupedBuses)
     {
 
     }
@@ -42,7 +42,7 @@ class DailyReportMail extends Mailable
             with: [
                 'report' => $this->report,
                 'groupedBusDemands' => $this->groupedBusDemands,
-                'serviceWorksheets' => $this->serviceWorksheets,
+                'groupedBuses' => $this->groupedBuses,
             ],
         );
     }
