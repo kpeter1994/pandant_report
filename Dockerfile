@@ -1,6 +1,7 @@
 FROM node:20-alpine AS node_build
 
 WORKDIR /app
+ENV WAYFINDER_DISABLE=true
 
 # Csak a package fájlokat másoljuk először a gyorsabb buildhez
 COPY package*.json ./
