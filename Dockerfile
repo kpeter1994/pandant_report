@@ -8,11 +8,10 @@ RUN npm install
 
 # Teljes frontend kód másolása és build
 COPY . .
+RUN npm run build
 
 
 FROM php:8.3-fpm AS php_build
-
-RUN npm run build
 
 RUN apt-get update && apt-get install -y \
     git unzip libpq-dev libpng-dev libonig-dev libxml2-dev curl \
