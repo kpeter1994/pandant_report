@@ -30,7 +30,7 @@ RUN composer install --no-dev --optimize-autoloader \
     && php artisan view:clear \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-EXPOSE 9000
+EXPOSE 9100
 CMD ["php-fpm"]
 
 # ================================================================
