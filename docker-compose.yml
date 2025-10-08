@@ -35,3 +35,7 @@ services:
             - app-network
 volumes:
     storage_data:
+
+networks:
+    app-network:
+        external: true
