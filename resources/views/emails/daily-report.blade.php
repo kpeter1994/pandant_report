@@ -359,7 +359,6 @@
                                             @endif
                                         @endforeach
                                     @endforeach
-
                                     </tbody>
                                 </table>
                             @endforeach

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+    report-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: php_build
+        container_name: report-app
+        restart: unless-stopped
+        env_file:
+            -   .env
+        networks:
+            - app-network
+        volumes:
+            - storage_data:/var/www/html/storage
+    nginx:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: nginx_build
+        container_name: report-nginx
+        restart: unless-stopped
+        volumes:
+            -   storage_data:/var/www/html/storage
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.report.rule=Host(`report.createweb.hu`)"
+            - "traefik.http.routers.report.entrypoints=web,websecure"
+            - "traefik.http.routers.report.tls.certresolver=letsencrypt"
+            - "traefik.http.services.report.loadbalancer.server.port=80"
+        depends_on:
+            -   report-app
+        networks:
+            - app-network
+volumes:
+    storage_data:
