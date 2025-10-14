@@ -30,8 +30,14 @@ RUN composer install --no-dev --optimize-autoloader \
     && php artisan view:clear \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# ✅ Jogosultság script létrehozása
+RUN echo '#!/bin/sh\n\
+chown -R www-data:www-data storage bootstrap/cache\n\
+chmod -R ug+rw storage bootstrap/cache\n\
+php-fpm\n' > /usr/local/bin/start-container.sh && chmod +x /usr/local/bin/start-container.sh
+
+ENTRYPOINT ["/usr/local/bin/start-container.sh"]
 EXPOSE 9000
-CMD ["php-fpm"]
 
 # ================================================================
 # 2️⃣ Nginx fázis – kiszolgálás
