@@ -11,6 +11,10 @@ services:
         env_file:
             -   .env
         user: root
+        command: >
+            sh -c "chown -R 33:33 /var/www/html/storage &&
+                   chmod -R 775 /var/www/html/storage &&
+                   php-fpm"
         networks:
             - ite-busntruck_app-network
         volumes:
