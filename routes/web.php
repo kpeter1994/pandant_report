@@ -6,13 +6,15 @@ use App\Models\ServiceWorksheet;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+//Route::get('/', function () {
+//    return Inertia::render('Welcome');
+//})->name('home');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::redirect('/', '/admin');
+
+//Route::get('dashboard', function () {
+//    return Inertia::render('Dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/tester', function (){
     $dailyReport = DailyReport::where('is_active', true)->with(['busDemands.site','busDemands', 'trafficEvents.bus.site'])->first();

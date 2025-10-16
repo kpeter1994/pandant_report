@@ -28,7 +28,9 @@ class UserForm
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required(),
+                    ->dehydrateStateUsing(fn ($state) => !empty($state) ? bcrypt($state) : null)
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create'),
                 Textarea::make('two_factor_secret')
                     ->default(null)
                     ->columnSpanFull(),
