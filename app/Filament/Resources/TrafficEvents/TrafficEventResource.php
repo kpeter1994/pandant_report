@@ -28,6 +28,11 @@ class TrafficEventResource extends Resource
         return 'Forgalmi események';
     }
 
+    public static function getLabel(): string
+    {
+        return 'Forgalmi esemény';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return TrafficEventForm::configure($schema);

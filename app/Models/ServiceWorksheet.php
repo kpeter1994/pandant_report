@@ -8,6 +8,8 @@ class ServiceWorksheet extends Model
 {
     protected $table = 'service_worksheets';
 
+    protected $with = ['serviceType'];
+
     protected $fillable = [
         'service_type_id',
         'start',

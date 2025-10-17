@@ -10,6 +10,8 @@ class CreateBusDemand extends CreateRecord
 {
     protected static string $resource = BusDemandResource::class;
 
+
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['daily_report_id'] = DailyReport::where('is_active', true)->first()->id;

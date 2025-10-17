@@ -1,3 +1,4 @@
+@php use App\Models\ServiceType; @endphp
 <!doctype html>
 <html lang="und" dir="auto" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
@@ -333,7 +334,7 @@
                                     </tr>
                                     @foreach($buses as $bus)
                                         @foreach($bus->serviceWorksheets as $worksheet)
-                                            @if($worksheet->start > now()->subDay(7) && $worksheet->open)
+                                            @if($worksheet->start < now()->subDay(7) && $worksheet->open)
                                                 <tr>
                                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                                         <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
@@ -359,9 +360,80 @@
                                             @endif
                                         @endforeach
                                     @endforeach
+                                    <hr>
+                                    <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;"><b>Vonal javítás</b></div>
+                                        </td>
+                                    </tr>
+                                    @foreach($buses as $bus)
+                                        @foreach($bus->serviceWorksheets as $worksheet)
+                                            @if($worksheet->serviceType->name === 'Vonal javítás')
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                        <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+                                                            <tr>
+                                                                <td><b>Rendszám</b></td>
+                                                                <td><b>Munkalap nyítás</b></td>
+                                                                <td><b>Munkalap zárás</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{$bus->license_plate}}</td>
+                                                                <td>{{$worksheet->start}}</td>
+                                                                <td>{{$worksheet->end ?? '-'}}</td>
+                                                            </tr>
+                                                            @if($worksheet->description)
+                                                                <tr>
+                                                                    <td colspan="3"><i>{{$worksheet->description}}</i></td>
+                                                                </tr>
+                                                            @endif
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                    <hr>
+                                    <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;"><b>Járatkimaradás</b></div>
+                                        </td>
+                                    </tr>
+                                    @foreach($buses as $bus)
+                                        @foreach($bus->serviceWorksheets as $worksheet)
+                                            @if($worksheet->serviceType->name === 'Járatkimaradás')
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                        <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+                                                            <tr>
+                                                                <td><b>Rendszám</b></td>
+                                                                <td><b>Munkalap nyítás</b></td>
+                                                                <td><b>Munkalap zárás</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{$bus->license_plate}}</td>
+                                                                <td>{{$worksheet->start}}</td>
+                                                                <td>{{$worksheet->end ?? '-'}}</td>
+                                                            </tr>
+                                                            @if($worksheet->description)
+                                                                <tr>
+                                                                    <td colspan="3"><i>{{$worksheet->description}}</i></td>
+                                                                </tr>
+                                                            @endif
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                    <hr>
+
                                     </tbody>
                                 </table>
                             @endforeach
+
 
                         </div>
                         <!--[if mso | IE]></td></tr></table><![endif]-->

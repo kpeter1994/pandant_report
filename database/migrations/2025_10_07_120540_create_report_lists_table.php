@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->boolean('daily_report')->default(true);
             $table->boolean('all_email')->default(false);
-            $table->foreignId(Site::class);
+            $table->foreignIdFor(Site::class);
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ class TrafficEvent extends Model
     protected $fillable = [
         'daily_report_id',
         'bus_id',
-        'title',
         'description',
         'dispatch',
         'event_time',

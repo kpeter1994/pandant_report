@@ -16,7 +16,7 @@ class ServiceWorksheetForm
     {
         return $schema
             ->components([
-                Select::make('buses')->multiple()->relationship('buses', 'license_plate')->searchable()->preload()->required(),
+                Select::make('buses')->relationship('buses', 'license_plate')->searchable()->preload()->required(),
                 Select::make('service_type_id')
                     ->required()
                     ->relationship('serviceType', 'name'),

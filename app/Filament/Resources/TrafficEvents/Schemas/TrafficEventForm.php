@@ -16,21 +16,24 @@ class TrafficEventForm
             ->components([
                 Select::make('bus_id')
                     ->required()
+                    ->label('Busz')
                     ->relationship('bus', 'license_plate')->searchable()->preload(),
-                TextInput::make('title')
-                    ->required(),
                 Textarea::make('description')
+                    ->label("Esemény leírása")
                     ->default(null)
                     ->columnSpanFull(),
                 Textarea::make('dispatch')
                     ->default(null)
+                    ->label("Tett intézkedés (*opcionális)")
                     ->columnSpanFull(),
-                TimePicker::make('event_time'),
+                TimePicker::make('event_time')->label('Esemény időpontja'),
                 TextInput::make('damage_value')
+                    ->label('Kárérték')
                     ->required()
                     ->numeric()
                     ->default(0),
                 TextInput::make('personal_injury')
+                    ->label('Személyi sérültek száma')
                     ->required()
                     ->numeric()
                     ->default(0),

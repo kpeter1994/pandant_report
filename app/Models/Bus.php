@@ -8,6 +8,7 @@ class Bus extends Model
 {
     protected $table = "buses";
 
+
     protected $fillable = [
         'license_plate',
         'site_id',

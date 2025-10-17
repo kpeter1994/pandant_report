@@ -20,8 +20,6 @@ class TrafficEventsTable
                 TextColumn::make('bus.license_plate')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('title')
-                    ->searchable(),
                 TextColumn::make('event_time')
                     ->time()
                     ->sortable(),

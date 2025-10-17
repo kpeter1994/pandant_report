@@ -23,6 +23,10 @@ Route::get('/tester', function (){
         return $demand->site->name ?? 'Nincs telephely';
     });
 
+//    $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
+//        $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
+//    })->get();
+
     $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
         $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
     })->get();
