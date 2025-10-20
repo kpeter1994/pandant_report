@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DailyReport extends Model
 {
-    protected $fillable = ['report_date'];
+    protected $fillable = ['report_date', 'is_active'];
 
     public function trafficEvents()
     {

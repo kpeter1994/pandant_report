@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Mail\DailyReportMail;
 use App\Models\Bus;
 use App\Models\DailyReport;
+use App\Models\ReportList;
 use App\Models\ServiceWorksheet;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -44,17 +45,16 @@ class DailyTask extends Command
             return $bus->site->name ?? 'Nincs telephely';
         });
 
+        $to = ReportList::where('daily_report', true)->pluck('email')->toArray();
 
+        Mail::to($to)->send(new DailyReportMail($dailyReport, $groupedBusDemands, $groupedBuses));
 
-//        dd($groupedBusDemands);
-        # $dailyReport->is_active = false;
-        # $dailyReport->save();
+        $dailyReport->is_active = false;
+        $dailyReport->save();
 
-        Mail::to('smitpeter777@gmail.com')->send(new DailyReportMail($dailyReport, $groupedBusDemands, $groupedBuses));
-
-        # DailyReport::create([
-        #    'report_date' => now()->toDateString(),
-        #    'is_active' => true,
-        # ]);
+        DailyReport::create([
+           'report_date' => now()->toDateString(),
+           'is_active' => true,
+        ]);
     }
 }
