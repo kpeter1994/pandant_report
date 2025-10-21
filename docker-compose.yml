@@ -30,7 +30,8 @@ services:
             - "traefik.enable=false"
         env_file:
             -   .env
-        command: php artisan schedule:work
+        command: ["sh", "-c", "php artisan schedule:work"]
+        entrypoint: [""]
         networks:
             - ite-busntruck_app-network
         depends_on:
