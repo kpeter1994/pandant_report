@@ -10,7 +10,7 @@ Artisan::command('inspire', function () {
 
 
 Schedule::command('app:daily-task')
-    ->dailyAt('07:00')
+    ->dailyAt(config('schedule.report_time'))
     ->timezone('Europe/Budapest')
     ->withoutOverlapping()
     ->onOneServer();
