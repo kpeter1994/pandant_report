@@ -11,6 +11,7 @@ class ServiceWorksheet extends Model
     protected $with = ['serviceType'];
 
     protected $fillable = [
+        'bus_id',
         'service_type_id',
         'start',
         'end',
@@ -22,8 +23,8 @@ class ServiceWorksheet extends Model
         return $this->belongsTo(ServiceType::class);
     }
 
-    public function buses()
+    public function bus()
     {
-        return $this->belongsToMany(Bus::class);
+        return $this->belongsTo(Bus::class);
     }
 }

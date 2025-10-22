@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('service_worksheets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(ServiceType::class);
+            $table->foreignIdFor(Bus::class);
             $table->datetime('start');
             $table->datetime('end')->nullable();
             $table->text('description')->nullable();

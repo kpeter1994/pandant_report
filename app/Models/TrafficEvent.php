@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class TrafficEvent extends Model
@@ -14,7 +15,17 @@ class TrafficEvent extends Model
         'event_time',
         'damage_value',
         'personal_injury',
+        'alien_fault',
+        'user_id',
+        'elimination'
     ];
+
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function dailyReport()
     {
@@ -32,6 +43,20 @@ class TrafficEvent extends Model
             $actualReport = DailyReport::where('is_active', true)->first();
             $trafficEvent->daily_report_id = $actualReport->id;
         });
+
+        static::created(function ($trafficEvent) {
+            if ($trafficEvent->elimination){
+                ServiceWorksheet::create([
+                    'bus_id' => $trafficEvent->bus_id,
+                    'service_type_id' => ServiceType::where('name','Járatkimaradás')->first()->id,
+                    'start' => Carbon::today()->setTimeFromTimeString($trafficEvent->event_time),
+                    'end' => Carbon::today()->setTimeFromTimeString($trafficEvent->event_time),
+                    'open' => false
+                ]);
+            }
+        });
     }
+
+
 
 }

@@ -329,6 +329,40 @@
                                     </tr>
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;"><b>24 órán túli javitó</b></div>
+                                        </td>
+                                    </tr>
+                                    @foreach($buses as $bus)
+                                        @foreach($bus->serviceWorksheets as $worksheet)
+                                            @if($worksheet->start < now()->subDay(1) && $worksheet->start  > now()->subDay(7) && $worksheet->open)
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                        <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+                                                            <tr>
+                                                                <td><b>Rendszám</b></td>
+                                                                <td><b>Munkalap nyítás</b></td>
+                                                                <td><b>Munkalap zárás</b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{$bus->license_plate}}</td>
+                                                                <td>{{$worksheet->start}}</td>
+                                                                <td>{{$worksheet->end ?? '-'}}</td>
+                                                            </tr>
+                                                            @if($worksheet->description)
+                                                                <tr>
+                                                                    <td colspan="3"><i>{{$worksheet->description}}</i></td>
+                                                                </tr>
+                                                            @endif
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                    <hr>
+                                    <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;"><b>Tartósan javító autóbusz</b></div>
                                         </td>
                                     </tr>

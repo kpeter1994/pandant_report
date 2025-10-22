@@ -6,6 +6,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class TrafficEventForm
@@ -32,6 +33,9 @@ class TrafficEventForm
                     ->required()
                     ->numeric()
                     ->default(0),
+
+                Toggle::make('alien_fault')->label('Idegenhibás'),
+                Toggle::make('elimination')->label('Járatkimaradás történt-e?'),
                 TextInput::make('personal_injury')
                     ->label('Személyi sérültek száma')
                     ->required()

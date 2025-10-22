@@ -13,4 +13,12 @@ class CreateTrafficEvent extends CreateRecord
     {
         return 'Új forgalmi esemény';
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+
+        return $data;
+    }
 }
