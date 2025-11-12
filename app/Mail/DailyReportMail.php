@@ -28,7 +28,7 @@ class DailyReportMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Daily Report Mail',
+            subject: 'Napi Jelentés - ' . $this->report->report_date,
         );
     }
 

@@ -201,13 +201,13 @@
                                         @endforeach
                                     </tr>
                                     <tr>
-                                      <td>Kért</td>
+                                      <td>busz igény [db]</td>
                                         @foreach($demands as $demand)
                                             <td>{{$demand->garden}}</td>
                                         @endforeach
                                     </tr>
                                     <tr>
-                                      <td>Kapott</td>
+                                      <td>kiadott busz [db]</td>
                                         @foreach($demands as $demand)
                                             <td>{{$demand->got}}</td>
                                         @endforeach
