@@ -328,10 +328,6 @@
                                                         <td><b>Időpont:</b></td>
                                                         <td>{{$event->event_time}}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><b>Eseményt rögzítű:</b></td>
-                                                        <td>{{$event->user->name}}</td>
-                                                    </tr>
                                                 </table>
                                             </td>
                                         </tr>
