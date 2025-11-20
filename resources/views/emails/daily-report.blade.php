@@ -246,7 +246,14 @@
                         <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
                         <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                             @foreach($report->trafficEvents as $event)
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+
+                                @php
+                                    $extraStyle = $event->extraordinary
+                                        ? 'border: solid 4px red;'
+                                        : '';
+                                @endphp
+
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top; {{$extraStyle}}" width="100%">
                                     <tbody>
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
@@ -262,6 +269,14 @@
                                                 <tr>
                                                     <td><b>Időpont:</b></td>
                                                     <td>{{$event->event_time}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Felelős:</b></td>
+                                                    <td>{{$event->alien_fault ? 'Idegen hibás' : 'Saját hibás'}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Eseményt rögzítű:</b></td>
+                                                    <td>{{$event->user->name}}</td>
                                                 </tr>
                                                 @if($event->damage_value > 0)
                                                     <tr>
@@ -291,6 +306,48 @@
                                     </tbody>
                                 </table>
                             @endforeach
+
+                                @foreach($report->siteEvents as $event)
+
+                                    @php
+                                        $extraStyle = $event->extraordinary
+                                            ? 'border: solid 4px red;'
+                                            : '';
+                                    @endphp
+
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top; {{$extraStyle}}" width="100%">
+                                        <tbody>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+                                                    <tr>
+                                                        <td><b>Telephely:</b></td>
+                                                        <td>{{$event->site->name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Időpont:</b></td>
+                                                        <td>{{$event->event_time}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Eseményt rögzítű:</b></td>
+                                                        <td>{{$event->user->name}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;"><b>Leírás:</b></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#000000;">{{$event->description}}</div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                @endforeach
 
                         </div>
                         <!--[if mso | IE]></td></tr></table><![endif]-->

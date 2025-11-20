@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\User::class)->nullable();
             $table->boolean('alien_fault')->default(false);
             $table->boolean('elimination')->default(false);
+            $table->boolean('extraordinary')->default(false);
         });
     }
 
@@ -35,6 +36,10 @@ return new class extends Migration
 
             if (Schema::hasColumn('traffic_events', 'elimination')) {
                 $table->dropColumn('elimination');
+            }
+
+            if (Schema::hasColumn('traffic_events', 'extraordinary')) {
+                $table->dropColumn('extraordinary');
             }
         });
     }

@@ -34,8 +34,9 @@ class TrafficEventForm
                     ->numeric()
                     ->default(0),
 
-                Toggle::make('alien_fault')->label('Idegenhibás'),
-                Toggle::make('elimination')->label('Járatkimaradás történt-e?'),
+                Toggle::make('alien_fault')->label('Idegenhibás')->columnSpanFull(4),
+                Toggle::make('elimination')->label('Járatkimaradás történt-e?')->columnSpanFull(4),
+                Toggle::make('extraordinary')->label('Rendkívüli esemény?')->columnSpanFull(4),
                 TextInput::make('personal_injury')
                     ->label('Személyi sérültek száma')
                     ->required()

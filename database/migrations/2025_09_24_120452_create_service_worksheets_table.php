@@ -20,6 +20,7 @@ return new class extends Migration
             $table->datetime('start');
             $table->datetime('end')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('open')->default(true);
             $table->timestamps();
         });
     }

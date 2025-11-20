@@ -17,7 +17,8 @@ class TrafficEvent extends Model
         'personal_injury',
         'alien_fault',
         'user_id',
-        'elimination'
+        'elimination',
+        'extraordinary'
     ];
 
 
