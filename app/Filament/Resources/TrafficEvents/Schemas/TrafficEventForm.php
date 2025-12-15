@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\TrafficEvents\Schemas;
 
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -27,7 +28,7 @@ class TrafficEventForm
                     ->default(null)
                     ->label("Tett intézkedés (*opcionális)")
                     ->columnSpanFull(),
-                TimePicker::make('event_time')->label('Esemény időpontja'),
+                DateTimePicker::make('event_time')->label('Esemény időpontja'),
                 TextInput::make('damage_value')
                     ->label('Kárérték')
                     ->required()
