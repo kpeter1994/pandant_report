@@ -35,8 +35,14 @@ Route::get('/tester', function (){
         return $bus->site->name ?? 'Nincs telephely';
     });
 
+    foreach ($groupedBusDemands as $demand) {
+        foreach ($demand as $item) {
+            $item['stock'] = Bus::where('site_id', $item->site_id)->where('bus_types_id',$item->bus_types_id)->count();
+        }
+    }
 
-    dd($groupedBuses);
+
+    dd($groupedBusDemands);
 });
 
 require __DIR__.'/settings.php';

@@ -29,6 +29,7 @@ class DailyTask extends Command
     /**
      * Execute the console command.
      */
+
     public function handle()
     {
         $dailyReport = DailyReport::where('is_active', true)->with(['busDemands.site', 'busDemands.busType', 'trafficEvents.bus.site'])->first();
@@ -36,6 +37,12 @@ class DailyTask extends Command
         $groupedBusDemands = $dailyReport->busDemands->groupBy(function ($demand) {
             return $demand->site->name ?? 'Nincs telephely';
         });
+
+        foreach ($groupedBusDemands as $demand) {
+            foreach ($demand as $item) {
+                $item['stock'] = Bus::where('site_id', $item->site_id)->where('bus_types_id',$item->bus_types_id)->count();
+            }
+        }
 
         $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
             $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
@@ -46,6 +53,7 @@ class DailyTask extends Command
         });
 
         $to = ReportList::where('daily_report', true)->pluck('email')->toArray();
+
 
         Mail::to($to)->send(new DailyReportMail($dailyReport, $groupedBusDemands, $groupedBuses));
 

@@ -200,6 +200,12 @@
                                             <td><b>{{$demand->busType->name}}</b></td>
                                         @endforeach
                                     </tr>
+                                      <tr>
+                                          <td>állomány [db]</td>
+                                          @foreach($demands as $demand)
+                                              <td>{{$demand->stock}}</td>
+                                          @endforeach
+                                      </tr>
                                     <tr>
                                       <td>busz igény [db]</td>
                                         @foreach($demands as $demand)
@@ -212,6 +218,12 @@
                                             <td>{{$demand->got}}</td>
                                         @endforeach
                                     </tr>
+                                      <tr>
+                                          <td>tartalék [db]</td>
+                                          @foreach($demands as $demand)
+                                              <td>{{$demand->got - $demand->garden}}</td>
+                                          @endforeach
+                                      </tr>
                                   </table>
                                 </td>
                               </tr>
