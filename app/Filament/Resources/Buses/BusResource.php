@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class BusResource extends Resource
 {
@@ -34,6 +35,20 @@ class BusResource extends Resource
     public static function table(Table $table): Table
     {
         return BusesTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $user = auth()->user();
+
+        $query = parent::getEloquentQuery()
+            ->orderBy('created_at', 'desc');
+
+        if ($user->role->name === 'Admin') {
+            return $query;
+        }
+
+        return $query->where('site_id', $user->site_id);
     }
 
     public static function getRelations(): array
