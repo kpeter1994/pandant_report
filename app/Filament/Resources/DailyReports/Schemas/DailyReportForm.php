@@ -5,6 +5,7 @@ namespace App\Filament\Resources\DailyReports\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class DailyReportForm
 {
@@ -13,9 +14,9 @@ class DailyReportForm
         return $schema
             ->components([
                 DatePicker::make('report_date')
-                    ->required(),
+                    ->required()->visible(fn () => Auth::user()?->role === 'Admin'),
                 Toggle::make('is_active')
-                    ->required(),
+                    ->required()->required()->visible(fn () => Auth::user()?->role === 'Admin'),
             ]);
     }
 }
