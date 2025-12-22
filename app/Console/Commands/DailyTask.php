@@ -50,7 +50,7 @@ class DailyTask extends Command
         }
 
         $buses = Bus::with(['serviceWorksheets', 'site'])->whereHas('serviceWorksheets', function ($g){
-            $g->where('end', '>', now()->subHour(7))->orWhereNull('end');
+            $g->where('end', '>', now()->subHour(24))->orWhereNull('end');
         })->get();
 
         $groupedBuses = $buses->groupBy(function ($bus){
