@@ -14,9 +14,9 @@ class DailyReportForm
         return $schema
             ->components([
                 DatePicker::make('report_date')
-                    ->required()->visible(fn () => Auth::user()?->role === 'Admin'),
+                    ->required()->visible(fn () => Auth::user()?->role->name === 'Admin'),
                 Toggle::make('is_active')
-                    ->required()->required()->visible(fn () => Auth::user()?->role === 'Admin'),
+                    ->required()->required()->visible(fn () => Auth::user()?->role->name === 'Admin'),
             ]);
     }
 }

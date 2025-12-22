@@ -14,6 +14,9 @@ class ServiceWorksheetsTable
     {
         return $table
             ->columns([
+                TextColumn::make('bus.license_plate')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('serviceType.name')
                     ->sortable(),
                 TextColumn::make('start')

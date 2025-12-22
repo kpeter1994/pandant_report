@@ -41,6 +41,11 @@ class DailyTask extends Command
         foreach ($groupedBusDemands as $demand) {
             foreach ($demand as $item) {
                 $item['stock'] = Bus::where('site_id', $item->site_id)->where('bus_types_id',$item->bus_types_id)->count();
+                $item['repair'] = Bus::where('site_id', $item->site_id)
+                    ->where('bus_types_id',$item->bus_types_id)
+                    ->whereHas('serviceWorksheets', function ($g){
+                        $g->whereNull('end');
+                    })->count();
             }
         }
 

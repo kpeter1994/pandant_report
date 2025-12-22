@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ServiceWorksheetResource extends Resource
 {
@@ -33,6 +34,22 @@ class ServiceWorksheetResource extends Resource
     public static function table(Table $table): Table
     {
         return ServiceWorksheetsTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $user = auth()->user();
+
+        $query = parent::getEloquentQuery()
+            ->orderBy('created_at', 'desc');
+
+        if ($user->role->name === 'Admin') {
+            return $query;
+        }
+
+        return $query->whereHas('bus', function ($query) use ($user) {
+            $query->where('site_id', $user->site_id);
+        });
     }
 
     public static function getRelations(): array

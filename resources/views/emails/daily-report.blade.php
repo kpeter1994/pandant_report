@@ -219,9 +219,15 @@
                                         @endforeach
                                     </tr>
                                       <tr>
-                                          <td>tartalék [db]</td>
+                                          <td>javítás alatt [db]</td>
                                           @foreach($demands as $demand)
-                                              <td>{{$demand->got - $demand->garden}}</td>
+                                              <td>{{$demand->repair}}</td>
+                                          @endforeach
+                                      </tr>
+                                      <tr>
+                                          <td>forgalomképes tartalék [db]</td>
+                                          @foreach($demands as $demand)
+                                              <td>{{$demand->stock - $demand->got - $demand->repair}}</td>
                                           @endforeach
                                       </tr>
                                   </table>
