@@ -12,6 +12,7 @@ class ReportList extends Model
         'daily_report',
         'all_email',
         'site_id',
+        'local_event',
     ];
 
     public function site()

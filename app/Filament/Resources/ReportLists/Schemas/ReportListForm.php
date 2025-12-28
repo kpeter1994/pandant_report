@@ -23,6 +23,8 @@ class ReportListForm
                     ->required(),
                 Toggle::make('all_email')
                     ->required(),
+                Toggle::make('local_event')
+                    ->required(),
                 Select::make('site_id')
                     ->label('Telephely')
                     ->relationship('site', 'name')

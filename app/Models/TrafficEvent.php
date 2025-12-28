@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Mail\EventEmail;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class TrafficEvent extends Model
 {
@@ -55,6 +57,29 @@ class TrafficEvent extends Model
                     'open' => false
                 ]);
             }
+
+
+            $emails = collect();
+
+            if ($trafficEvent->user?->email) {
+                $emails->push($trafficEvent->user->email);
+            }
+
+            $emails = $emails->merge(
+                ReportList::where('all_email', true)->pluck('email')
+            );
+
+            if ($trafficEvent->bus?->site_id) {
+                $emails = $emails->merge(
+                    ReportList::where('site_id', $trafficEvent->bus->site_id)
+                        ->where('local_event', true)
+                        ->pluck('email')
+                );
+            }
+
+            $emails = $emails->unique()->filter();
+
+            Mail::to($emails)->send(new EventEmail($trafficEvent));
         });
     }
 

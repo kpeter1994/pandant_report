@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SiteEvents\Schemas;
 
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -22,7 +23,7 @@ class SiteEventForm
                 Textarea::make('description')
                     ->default(null)
                     ->columnSpanFull(),
-                TimePicker::make('event_time')
+                DateTimePicker::make('event_time')
                     ->required(),
             ]);
     }

@@ -1,0 +1,53 @@
+<mjml>
+    <mj-head>
+        <mj-preview>
+            <!-- TODO Add mail preview -->
+        </mj-preview>
+    </mj-head>
+    <mj-body>
+        <mj-wrapper padding="">
+            <mj-section background-color="#DEDEDE">
+                <mj-column>
+                    <mj-image width="150px" src="https://itkholding.hu/wp-content/uploads/2021/02/ITK-HOLDONG_LOGO_FEJLEC-e1612822886364.png"/>
+                </mj-column>
+                <mj-column>
+                    <mj-text font-style="bold" font-size="20px">Esemény értesítő</mj-text>
+                    <mj-text>2025.12.28 12:35</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section>
+                <mj-column width="100%">
+                    <mj-table>
+                        <tr>
+                            <td><b>Rendszám:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Időpont:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Telephely:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Kárérték:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+                        <tr>
+                            <td><b>Személyi sérült:</b></td>
+                            <td>LMG-058</td>
+                        </tr>
+
+                    </mj-table>
+                    <mj-text><b>Leírás:</b></mj-text>
+                    <mj-text>Az információs társadalom rohamos fejlődésével lépést tartva rendszerintegrátorként társaságunk, a Pandant TMSZ Kft.  hatékony és fenntartható fejlesztésekkel, szolgáltatásokkal támogatja partnereit. Legyen szó szoftver- és hardverfejlesztési vagy üzemeltetési,</mj-text>
+                </mj-column>
+            </mj-section>
+
+
+        </mj-wrapper>
+
+    </mj-body>
+</mjml>
