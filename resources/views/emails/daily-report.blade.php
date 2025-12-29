@@ -207,13 +207,13 @@
                                           @endforeach
                                       </tr>
                                     <tr>
-                                      <td>busz igény [db]</td>
+                                      <td>napi tényleges igény [db]</td>
                                         @foreach($demands as $demand)
                                             <td>{{$demand->garden}}</td>
                                         @endforeach
                                     </tr>
                                     <tr>
-                                      <td>kiadott busz [db]</td>
+                                      <td>szerződés szerinti igény [db]</td>
                                         @foreach($demands as $demand)
                                             <td>{{$demand->got}}</td>
                                         @endforeach
@@ -225,9 +225,9 @@
                                           @endforeach
                                       </tr>
                                       <tr>
-                                          <td>forgalomképes tartalék [db]</td>
+                                          <td>forgalomképes tartalék a telephelyen [db]</td>
                                           @foreach($demands as $demand)
-                                              <td>{{$demand->stock - $demand->got - $demand->repair}}</td>
+                                              <td>{{$demand->stock - $demand->garden - $demand->repair}}</td>
                                           @endforeach
                                       </tr>
                                   </table>
