@@ -50,7 +50,7 @@ class BusDemandForm
                     ->label('Kiadott jármű')
                     ->required()
                     ->numeric()
-                    ->live()
+                    ->live(debounce: 800)
                     ->afterStateUpdated(function ($state, $get) {
 
                         if ($state < $get('garden')) {
