@@ -30,7 +30,7 @@ class DailyReportMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Napi Jelentés - ' . Carbon::parse($this->report->report_date)->addDay(),
+            subject: 'Napi Jelentés - ' . Carbon::parse($this->report->report_date)->addDay()->toDateString(),
         );
     }
 
@@ -42,7 +42,9 @@ class DailyReportMail extends Mailable
         return new Content(
             view: 'emails.daily-report',
             with: [
-                'report_date' => Carbon::parse($this->report->report_date)->addDay(),
+                'report_date' => Carbon::parse($this->report->report_date)
+                    ->addDay()
+                    ->toDateString(),
                 'report' => $this->report,
                 'groupedBusDemands' => $this->groupedBusDemands,
                 'groupedBuses' => $this->groupedBuses,
