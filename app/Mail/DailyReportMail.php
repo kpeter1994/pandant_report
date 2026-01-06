@@ -9,6 +9,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Carbon\Carbon;
+
 
 class DailyReportMail extends Mailable
 {
@@ -28,7 +30,7 @@ class DailyReportMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Napi Jelentés - ' . $this->report->report_date,
+            subject: 'Napi Jelentés - ' . Carbon::parse($this->report->report_date)->addDay(),
         );
     }
 
@@ -40,6 +42,7 @@ class DailyReportMail extends Mailable
         return new Content(
             view: 'emails.daily-report',
             with: [
+                'report_date' => Carbon::parse($this->report->report_date)->addDay(),
                 'report' => $this->report,
                 'groupedBusDemands' => $this->groupedBusDemands,
                 'groupedBuses' => $this->groupedBuses,
