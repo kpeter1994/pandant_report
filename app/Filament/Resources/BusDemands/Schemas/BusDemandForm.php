@@ -44,10 +44,10 @@ class BusDemandForm
                     ->label('Busz típus'),
                 TextInput::make('garden')
                     ->required()
-                    ->label('Napi tényleges igény')
+                    ->label('Üzem által kiadott mennyiség (db)')
                     ->numeric(),
                 TextInput::make('got')
-                    ->label('Szerződés szerinti igény')
+                    ->label('Napi autóbusz forgalmi igény (db)')
                     ->required()
                     ->numeric()
             ]);
