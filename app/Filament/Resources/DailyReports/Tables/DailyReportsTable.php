@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\DailyReports\Tables;
 
+use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -17,8 +18,11 @@ class DailyReportsTable
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('report_date')
-                    ->date()
-                    ->sortable(),
+                    ->label('Dátum')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) =>
+                    Carbon::parse($state)->addDay()->format('Y.m.d')
+                    ),
                 IconColumn::make('is_active')
                     ->boolean(),
                 TextColumn::make('created_at')

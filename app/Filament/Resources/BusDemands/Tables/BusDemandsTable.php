@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Carbon\Carbon;
 
 class BusDemandsTable
 {
@@ -15,8 +16,11 @@ class BusDemandsTable
         return $table
             ->columns([
                 TextColumn::make('dailyReport.report_date')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('Dátum')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) =>
+                    Carbon::parse($state)->addDay()->format('Y.m.d')
+                    ),
                 TextColumn::make('site.name')
                     ->numeric()
                     ->sortable(),
