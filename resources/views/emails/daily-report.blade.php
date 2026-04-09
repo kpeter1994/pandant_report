@@ -611,7 +611,7 @@
                                                 </tr>
                                                 @foreach($buses as $bus)
                                                     @foreach($bus->serviceWorksheets as $worksheet)
-                                                        @if($worksheet->serviceType->name === 'Vonal javítás')
+                                                        @if($worksheet->serviceType->name === 'Vonal javítás' && $worksheet->start >= now()->subDay())
                                                             <tr>
                                                                 <td align="left"
                                                                     style="font-size:0px;padding:10px 25px;word-break:break-word;">
