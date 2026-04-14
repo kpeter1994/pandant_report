@@ -653,7 +653,7 @@
                                                 </tr>
                                                 @foreach($buses as $bus)
                                                     @foreach($bus->serviceWorksheets as $worksheet)
-                                                        @if($worksheet->serviceType->name === 'Járatkimaradás')
+                                                        @if($worksheet->serviceType->name === 'Járatkimaradás' && $worksheet->open )
                                                             <tr>
                                                                 <td align="left"
                                                                     style="font-size:0px;padding:10px 25px;word-break:break-word;">
